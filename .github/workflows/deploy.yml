@@ -32,4 +32,5 @@ jobs:
           docker pull ${{ secrets.DOCKER_USERNAME }}/flask-app:latest
           docker stop flask-app || true
           docker rm flask-app || true
-          docker run -d -p 5000:5000 --name flask-app ${{ secrets.DOCKER_USERNAME }}/flask-app:latest
+          docker run -d -p 5000:5000 --restart unless-stopped --name flask-app ${{ secrets.DOCKER_USERNAME }}/flask-app:latest
+          docker image prune -f
